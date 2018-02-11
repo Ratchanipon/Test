@@ -1,0 +1,13 @@
+
+{
+  "/angular": {
+     "target":  {
+       "host": "https://bx.in.th/api/",
+       "protocol": "https:",
+       "port": 4200
+     },
+     "secure": false,
+     "changeOrigin": false,
+     "logLevel": "info"
+  }
+}
