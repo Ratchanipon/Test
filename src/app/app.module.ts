@@ -19,6 +19,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
 import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { ContentComponent } from './page/content/content.component';
+import { UserComponent } from './page/user/user.component';
+import { UserService } from './service/user.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -26,13 +29,15 @@ import { ContentComponent } from './page/content/content.component';
     AppComponent,
     HeroesComponent,
     IronmarnComponent,
-    ContentComponent
+    ContentComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
+    NgbModule.forRoot(),
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyC8idP11oFEzShOf18qDt8DVJycUZzmCeA",
       authDomain: "palm-zcash.firebaseapp.com",
@@ -40,9 +45,12 @@ import { ContentComponent } from './page/content/content.component';
       projectId: "palm-zcash",
       storageBucket: "palm-zcash.appspot.com",
       messagingSenderId: "790859641229"
-    })
+    }),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
+
   ],
-  providers: [ApiServiceService],
+  providers: [ApiServiceService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
