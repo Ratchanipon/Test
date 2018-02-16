@@ -10,9 +10,9 @@ import { UserService } from '../../service/user.service';
 export class UserComponent implements OnInit {
 
 
-  user:User = {firstname:'',lastname:''};
+  user:User = {username:'anusondd@gmail.com',password:'21519097'};
   users:User[];
-  key:string;
+  key:string='';
 
   constructor(
     private userService:UserService
@@ -30,13 +30,19 @@ export class UserComponent implements OnInit {
 
   }
 
-  async getListUser(){
-    await this.userService.getUserList().subscribe(userList=>{
+  // async getListUser(){
+  //   await this.userService.getUserList().subscribe(userList=>{
+  //     this.users = userList;
+  //     console.log(this.users);
+  //   })
+  // }
+
+  getListUser(){
+    this.userService.getUserList().subscribe(userList=>{
       this.users = userList;
       console.log(this.users);
     })
   }
-
 
   modify(user){
     this.key = user.$key;
@@ -48,7 +54,7 @@ export class UserComponent implements OnInit {
     this.userService.updateUser(this.key,user).then(res=>{
       console.log(res);
       this.key= '';
-      this.user = {firstname:'',lastname:''};
+      this.user = {username:'',password:''};
     });
 
   }
@@ -57,6 +63,11 @@ export class UserComponent implements OnInit {
     this.userService.removeUser(key).then(res=>{
       console.log(res);
     });
+  }
+
+  clear(){
+    this.user = {username:'',password:''};
+    this.key= '';
   }
 
 }

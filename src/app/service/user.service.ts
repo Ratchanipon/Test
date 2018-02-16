@@ -5,12 +5,14 @@ import { User } from '../model/User';
 @Injectable()
 export class UserService {
 
+  sort:number;
   constructor(
     private database:AngularFireDatabase
   ) { }
 
 
   saveUser(user:User){
+    //user.sort = this.countUser();
     return this.database.list('user/').push(user);
   }
 
@@ -24,6 +26,13 @@ export class UserService {
 
   removeUser(key:string){
     return this.database.list('user/').remove(key);
+  }
+
+  countUser(){
+    this.database.list('user/').subscribe(list=>{
+        this.sort = list.length+1;
+    })
+    return this.sort;
   }
 
 

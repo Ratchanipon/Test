@@ -22,7 +22,10 @@ import { ContentComponent } from './page/content/content.component';
 import { UserComponent } from './page/user/user.component';
 import { UserService } from './service/user.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NavComponent } from './page/nav/nav.component';
 
+import {ButtonModule,SplitButtonModule,AccordionModule} from 'primeng/primeng';
+import { LoginComponent } from './page/login/login.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     HeroesComponent,
     IronmarnComponent,
     ContentComponent,
-    UserComponent
+    UserComponent,
+    NavComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -47,8 +52,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
       messagingSenderId: "790859641229"
     }),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
-
+    AngularFireDatabaseModule,
   ],
   providers: [ApiServiceService,UserService],
   bootstrap: [AppComponent]
