@@ -28,7 +28,6 @@ import {ButtonModule,SplitButtonModule,AccordionModule} from 'primeng/primeng';
 import { LoginComponent } from './page/login/login.component';
 import { ApproverComponent } from './page/approver/approver.component';
 import { ApproverService } from './service/approver.service';
-import {NotificationsModule, NotificationsService} from 'angular4-notify';
 import { EditApproverComponent } from './page/edit-approver/edit-approver.component';
 
 @NgModule({
@@ -59,13 +58,11 @@ import { EditApproverComponent } from './page/edit-approver/edit-approver.compon
     }),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    NotificationsModule,
   ],
   providers: [
     ApiServiceService,
     UserService,
     ApproverService,
-    NotificationsService,
   ],
   bootstrap: [AppComponent]
 })

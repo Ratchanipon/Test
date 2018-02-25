@@ -4,7 +4,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { ApproverService } from '../../service/approver.service';
 import { Approver } from '../../model/Approver';
-import { NotificationsService } from 'angular4-notify';
 
 @Component({
   selector: 'app-approver',
@@ -24,7 +23,6 @@ export class ApproverComponent implements OnInit {
     private angularFireAuth:AngularFireAuth,
     public router:Router,
     private approverService:ApproverService,
-    protected notificationsService: NotificationsService
   ) { }
 
   ngOnInit() {
@@ -36,7 +34,6 @@ export class ApproverComponent implements OnInit {
     this.angularFireAuth.auth.createUserWithEmailAndPassword(user.email,user.password).then(user=>{
 
       this.approverService.saveApprover(user.email,user.uid).then(result=>{
-        this.notificationsService.addInfo('Information message');
             this.clear();
       }).catch(error=>{
         this.massage = error;
