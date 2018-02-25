@@ -26,6 +26,10 @@ import { NavComponent } from './page/nav/nav.component';
 
 import {ButtonModule,SplitButtonModule,AccordionModule} from 'primeng/primeng';
 import { LoginComponent } from './page/login/login.component';
+import { ApproverComponent } from './page/approver/approver.component';
+import { ApproverService } from './service/approver.service';
+import {NotificationsModule, NotificationsService} from 'angular4-notify';
+import { EditApproverComponent } from './page/edit-approver/edit-approver.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,9 @@ import { LoginComponent } from './page/login/login.component';
     ContentComponent,
     UserComponent,
     NavComponent,
-    LoginComponent
+    LoginComponent,
+    ApproverComponent,
+    EditApproverComponent
   ],
   imports: [
     BrowserModule,
@@ -44,17 +50,23 @@ import { LoginComponent } from './page/login/login.component';
     RouterModule.forRoot(routes),
     NgbModule.forRoot(),
     AngularFireModule.initializeApp({
-      apiKey: "AIzaSyC8idP11oFEzShOf18qDt8DVJycUZzmCeA",
-      authDomain: "palm-zcash.firebaseapp.com",
-      databaseURL: "https://palm-zcash.firebaseio.com",
-      projectId: "palm-zcash",
-      storageBucket: "palm-zcash.appspot.com",
-      messagingSenderId: "790859641229"
+        apiKey: "AIzaSyBM0RzKCpN-wuGueTi5KjSaSFQgR3p1Kug",
+        authDomain: "blockchain-a.firebaseapp.com",
+        databaseURL: "https://blockchain-a.firebaseio.com",
+        projectId: "blockchain-a",
+        storageBucket: "blockchain-a.appspot.com",
+        messagingSenderId: "209725170616"
     }),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    NotificationsModule,
   ],
-  providers: [ApiServiceService,UserService],
+  providers: [
+    ApiServiceService,
+    UserService,
+    ApproverService,
+    NotificationsService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

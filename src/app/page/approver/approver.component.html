@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="starter-template">
+      <h3>Approver Management</h3>
+      <!-- <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p> -->
+      
+  </div>
+  <br>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Email</label>
+      <input type="text" class="form-control"  placeholder="Email" [(ngModel)]="user.email">
+    </div>
+    <div class="form-group col-md-6">
+      <label>Passworld</label>
+      <input type="text" class="form-control"  placeholder="Password" [(ngModel)]="user.password">
+    </div>
+  </div>
+ 
+    <button type="button" (click)="add(user)"    class="btn btn-success  float-right"  >Add Approver</button>
+
+
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Email</th>
+          <th>Full Name</th>
+          <th>JobPosition</th>
+          <th>Statust</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let approver of approvers; let i = index">
+          <th scope="row">{{i}}</th>
+          <td>{{approver.email}}</td>
+          <td>{{approver.titleName}} {{approver.firstName}} {{approver.lastName}}</td>
+          <td>{{approver.jobPosition}}</td>
+          <td>{{approver.statust}}</td>
+          <td>
+            <i class="fa fa-pencil" aria-hidden="true" (click)="modify(approver)"></i>
+          </td>
+        </tr>    
+      </tbody>
+    </table>
+    
+</div>

@@ -1,0 +1,10 @@
+export class Approver {
+    email:string;
+    titleName:string;
+    firstName:string;
+    lastName:string;
+    pictureProfile:string;
+    jobPosition:string;
+    statust:boolean;
+    token:string;
+}

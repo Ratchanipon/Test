@@ -15,7 +15,7 @@ export class AppComponent {
     public router:Router
   ) {
     this.angularFireAuth.authState.subscribe(user=>{
-      user!=null?this.router.navigate(['/user']):this.router.navigate(['/']);
+      user!=null?this.router.navigate(['/approver']):this.router.navigate(['/']);
       user!=null?this.uid = user.uid: this.uid = null;
     })
    }

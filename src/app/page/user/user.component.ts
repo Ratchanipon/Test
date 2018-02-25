@@ -10,7 +10,7 @@ import { UserService } from '../../service/user.service';
 export class UserComponent implements OnInit {
 
 
-  user:User = {username:'anusondd@gmail.com',password:'21519097'};
+  user:User = {email:'anusondd@gmail.com',password:'21519097'};
   users:User[];
   key:string='';
 
@@ -54,7 +54,7 @@ export class UserComponent implements OnInit {
     this.userService.updateUser(this.key,user).then(res=>{
       console.log(res);
       this.key= '';
-      this.user = {username:'',password:''};
+      this.user = {email:'',password:''};
     });
 
   }
@@ -66,7 +66,7 @@ export class UserComponent implements OnInit {
   }
 
   clear(){
-    this.user = {username:'',password:''};
+    this.user = {email:'',password:''};
     this.key= '';
   }
 
