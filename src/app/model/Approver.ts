@@ -7,4 +7,5 @@ export class Approver {
     jobPosition:string;
     statust:boolean;
     token:string;
+    sort:number;
 }

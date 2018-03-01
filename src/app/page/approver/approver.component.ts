@@ -54,12 +54,19 @@ export class ApproverComponent implements OnInit {
 
   async getApprovers(){
     await this.approverService.getApproverList().subscribe(list=>{
-          this.approvers = list;
+          this.approvers = list.sort((a, b) => a.sort - b.sort);
+          console.log(this.approvers);          
     });
   }
 
   modify(approver){
     this.router.navigate(['approver-edit',{'key':approver.$key}]);
+  }
+
+  changStatus(approver){
+    this.approverService.changStatus(approver.$key,approver.statust).then(res=>{console.log(res);
+    }).catch(e=>{console.log(e);
+    });
   }
 
 }

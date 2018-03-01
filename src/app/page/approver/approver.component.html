@@ -27,17 +27,22 @@
           <th>Email</th>
           <th>Full Name</th>
           <th>JobPosition</th>
+          <th>Sort</th>
           <th>Statust</th>
           <th>Edit</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let approver of approvers; let i = index">
-          <th scope="row">{{i}}</th>
+          <th scope="row">{{i+1}}</th>
           <td>{{approver.email}}</td>
           <td>{{approver.titleName}} {{approver.firstName}} {{approver.lastName}}</td>
           <td>{{approver.jobPosition}}</td>
-          <td>{{approver.statust}}</td>
+          <td>{{approver.sort}}</td>
+          <td>
+            <button *ngIf="approver.statust==true" type="button" class="btn btn-success" (click)="changStatus(approver)">ON</button>
+            <button *ngIf="approver.statust==false" type="button" class="btn btn-dark" (click)="changStatus(approver)">OFF</button>
+          </td>
           <td>
             <i class="fa fa-pencil" aria-hidden="true" (click)="modify(approver)"></i>
           </td>
