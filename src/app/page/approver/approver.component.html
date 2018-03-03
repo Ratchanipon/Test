@@ -38,7 +38,12 @@
           <td>{{approver.email}}</td>
           <td>{{approver.titleName}} {{approver.firstName}} {{approver.lastName}}</td>
           <td>{{approver.jobPosition}}</td>
-          <td>{{approver.sort}}</td>
+          <td>
+            <select class="form-control" [(ngModel)]="approver.sort"  id="exampleSelect1">
+                <option (click)="sortObject(approver.sort,approver.$key)" *ngFor="let num of approvers; let i = index" >{{i+1}}</option>
+            </select>
+
+          </td>
           <td>
             <button *ngIf="approver.statust==true" type="button" class="btn btn-success" (click)="changStatus(approver)">ON</button>
             <button *ngIf="approver.statust==false" type="button" class="btn btn-dark" (click)="changStatus(approver)">OFF</button>

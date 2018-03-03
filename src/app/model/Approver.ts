@@ -1,4 +1,5 @@
 export class Approver {
+    $key?:string;
     email:string;
     titleName:string;
     firstName:string;
