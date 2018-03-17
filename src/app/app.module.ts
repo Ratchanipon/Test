@@ -23,12 +23,18 @@ import { UserComponent } from './page/user/user.component';
 import { UserService } from './service/user.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NavComponent } from './page/nav/nav.component';
+import { ImageUploadModule } from "angular2-image-upload";
+import { Ng2ImgMaxModule } from 'ng2-img-max';
 
 import {ButtonModule,SplitButtonModule,AccordionModule} from 'primeng/primeng';
 import { LoginComponent } from './page/login/login.component';
 import { ApproverComponent } from './page/approver/approver.component';
 import { ApproverService } from './service/approver.service';
 import { EditApproverComponent } from './page/edit-approver/edit-approver.component';
+import { UploadsService } from './service/uploads.service';
+import { SidebarComponent } from './page/sidebar/sidebar.component';
+import { ApprovePersonalComponent } from './page/approve-personal/approve-personal.component';
+import { PersonalComponent } from './page/personal/personal.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +46,10 @@ import { EditApproverComponent } from './page/edit-approver/edit-approver.compon
     NavComponent,
     LoginComponent,
     ApproverComponent,
-    EditApproverComponent
+    EditApproverComponent,
+    SidebarComponent,
+    ApprovePersonalComponent,
+    PersonalComponent
   ],
   imports: [
     BrowserModule,
@@ -58,11 +67,14 @@ import { EditApproverComponent } from './page/edit-approver/edit-approver.compon
     }),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    ImageUploadModule.forRoot(),
+    Ng2ImgMaxModule
   ],
   providers: [
     ApiServiceService,
     UserService,
     ApproverService,
+    UploadsService
   ],
   bootstrap: [AppComponent]
 })

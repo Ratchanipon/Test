@@ -6,6 +6,7 @@ import { UserComponent } from "./page/user/user.component";
 import { LoginComponent } from "./page/login/login.component";
 import { ApproverComponent } from "./page/approver/approver.component";
 import { EditApproverComponent } from "./page/edit-approver/edit-approver.component";
+import { PersonalComponent } from "./page/personal/personal.component";
 
 
 export const routes: Routes = [
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path:'user', component: UserComponent },
   { path:'approver', component: ApproverComponent },
   { path:'approver-edit', component: EditApproverComponent },
+  { path:'personal', component: PersonalComponent },
 ];
 

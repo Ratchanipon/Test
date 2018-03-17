@@ -62,7 +62,8 @@ export class ApproverService {
   }
 
   sortObject(key:string,sort:number){
-    return this.database.object('approver/'+key).update({"sort":sort});
+    console.log('sort',sort);    
+    return this.database.object('approver/'+key+'/sort').set(sort);
   }
 
 }

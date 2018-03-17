@@ -1,6 +1,6 @@
 
- <app-nav *ngIf="uid"></app-nav>
- 
+ <app-nav *ngIf="uid=='approver'||uid=='admin'"></app-nav>
+ <!-- <app-sidebar *ngIf="uid" ></app-sidebar> -->
 <router-outlet></router-outlet>
 
 

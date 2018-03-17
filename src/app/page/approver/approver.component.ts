@@ -19,6 +19,7 @@ export class ApproverComponent implements OnInit {
   approvers:Approver[];
   new_sort:number;
   old_sort:number;
+  nextsort:number;
 
   constructor(
     private angularFireAuth:AngularFireAuth,
@@ -80,15 +81,15 @@ export class ApproverComponent implements OnInit {
       if(this.new_sort > this.old_sort){
         this.approvers.forEach(approver=>{
           if(approver.sort>this.old_sort&&approver.sort<=this.new_sort&&approver.$key!=key){
-            let nextsort = (approver.sort-1)*1;
-            this.approverService.sortObject(approver.$key,nextsort);
+            this.nextsort = approver.sort--;
+            this.approverService.sortObject(approver.$key,this.nextsort);
           }
         })
       }else{
         this.approvers.forEach(approver=>{
           if(approver.sort<this.old_sort&&approver.sort>=this.new_sort&&approver.$key!=key){
-            let nextsort = (approver.sort+1)*1;
-            this.approverService.sortObject(approver.$key,nextsort);
+            this.nextsort = approver.sort++;
+            this.approverService.sortObject(approver.$key,this.nextsort);
           }
         })
       }

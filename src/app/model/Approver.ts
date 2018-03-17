@@ -1,4 +1,4 @@
-export class Approver {
+export interface Approver {
     $key?:string;
     email:string;
     titleName:string;
