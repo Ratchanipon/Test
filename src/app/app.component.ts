@@ -30,6 +30,7 @@ export class AppComponent {
             this.uid = user.jobPosition;
           }
         });
+        localStorage.setItem('uid',user.uid);
       } else {
         this.uid = null;
         this.router.navigate(['/']);

@@ -35,6 +35,7 @@ import { UploadsService } from './service/uploads.service';
 import { SidebarComponent } from './page/sidebar/sidebar.component';
 import { ApprovePersonalComponent } from './page/approve-personal/approve-personal.component';
 import { PersonalComponent } from './page/personal/personal.component';
+import { PersonalService } from './service/personal.service';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { PersonalComponent } from './page/personal/personal.component';
     ApiServiceService,
     UserService,
     ApproverService,
-    UploadsService
+    UploadsService,
+    PersonalService
   ],
   bootstrap: [AppComponent]
 })

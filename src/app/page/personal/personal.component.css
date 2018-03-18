@@ -1,0 +1,26 @@
+.login {
+    padding: 7rem 1.5rem 1rem 1.5rem; 
+     /* 
+     padding-top
+     padding-right
+     padding-bottom
+     padding-left
+  */
+     text-align: center;
+}
+
+.container{
+
+    padding-top: 110px;    
+}
+
+.starter-template{
+    
+    text-align: center;
+}
+
+.logo{
+    height: 20%;
+    width: 20%;
+    /* background-color: powderblue; */
+}

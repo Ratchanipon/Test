@@ -10,7 +10,7 @@ export class ApproverService {
   Num_object:number;
   statust:boolean;
   opt:FirebaseListFactoryOpts;
-
+ 
   constructor(
     private database:AngularFireDatabase
   ) { }
