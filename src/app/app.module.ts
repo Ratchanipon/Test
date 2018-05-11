@@ -37,6 +37,11 @@ import { ApprovePersonalComponent } from './page/approve-personal/approve-person
 import { PersonalComponent } from './page/personal/personal.component';
 import { PersonalService } from './service/personal.service';
 
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProfileComponent } from './page/profile/profile.component';
+import { NotifyService } from './service/notify.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,10 +55,12 @@ import { PersonalService } from './service/personal.service';
     EditApproverComponent,
     SidebarComponent,
     ApprovePersonalComponent,
-    PersonalComponent
+    PersonalComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
@@ -69,14 +76,16 @@ import { PersonalService } from './service/personal.service';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     ImageUploadModule.forRoot(),
-    Ng2ImgMaxModule
+    Ng2ImgMaxModule,
+    ToastModule.forRoot()
   ],
   providers: [
     ApiServiceService,
     UserService,
     ApproverService,
     UploadsService,
-    PersonalService
+    PersonalService,
+    NotifyService
   ],
   bootstrap: [AppComponent]
 })

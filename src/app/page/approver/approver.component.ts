@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { User } from '../../model/User';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import { ApproverService } from '../../service/approver.service';
 import { Approver } from '../../model/Approver';
+import { ToastsManager } from 'ng2-toastr';
+
 
 @Component({
   selector: 'app-approver',
@@ -12,7 +14,7 @@ import { Approver } from '../../model/Approver';
 })
 export class ApproverComponent implements OnInit {
 
-  user:User = {email:'anusondd@gmail.com',password:'21519097'};
+  user:User = {email:'',password:''};
   key:string='';
   massage:string='';
   approver:Approver;
@@ -25,7 +27,11 @@ export class ApproverComponent implements OnInit {
     private angularFireAuth:AngularFireAuth,
     public router:Router,
     private approverService:ApproverService,
-  ) { }
+    public toastr: ToastsManager, 
+    vcr: ViewContainerRef
+  ) {
+    this.toastr.setRootViewContainerRef(vcr);
+   }
 
   ngOnInit() {
     this.getApprovers();
@@ -33,21 +39,28 @@ export class ApproverComponent implements OnInit {
   }
 
   add(user:User){
-    
-    this.angularFireAuth.auth.createUserWithEmailAndPassword(user.email,user.password).then(user=>{
+    if(user.email!=''&&user.password!=''){
+      this.angularFireAuth.auth.createUserWithEmailAndPassword(user.email,user.password).then(user=>{
 
-      this.approverService.saveApprover(user.email,user.uid).then(result=>{
-            //this.clear();
+        this.approverService.saveApprover(user.email,user.uid).then(result=>{
+              //this.clear();
+        }).catch(error=>{
+          this.massage = error;
+          console.log(this.massage);
+          this.toastr.success('You are awesome!', 'Success!',{toastLife: 3000, showCloseButton: true});
+        })      
+        
       }).catch(error=>{
         this.massage = error;
-        console.log(this.massage);
-      })      
-      
-    }).catch(error=>{
-      this.massage = error;
-      console.log(this.massage);
-    })
-    //this.router.navigate(['/user']);
+        console.log(this.massage);      
+        this.toastr.error(error.message, 'Oops!',{toastLife: 10000,showCloseButton: true});
+        // error.message
+      })
+      //this.router.navigate(['/user']);
+    }else{
+      this.toastr.error('Please fill in the information', 'Oops!',{toastLife: 10000,showCloseButton: true});
+    }
+    
   }
 
 
