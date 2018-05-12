@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Approver } from '../../model/Approver';
 import { ApproverService } from '../../service/approver.service';
@@ -7,6 +7,7 @@ import { UploadsService } from '../../service/uploads.service';
 import { Ng2ImgMaxService } from 'ng2-img-max';
 import { DomSanitizer } from '@angular/platform-browser';
 import { storage } from 'firebase';
+import { ToastsManager } from 'ng2-toastr';
 
 
 @Component({
@@ -27,8 +28,12 @@ export class EditApproverComponent implements OnInit {
     private approverService:ApproverService,
     private uploadsService:UploadsService,
     private ng2ImgMax: Ng2ImgMaxService,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    public toastr: ToastsManager, 
+    vcr: ViewContainerRef
   ) {
+    this.toastr.setRootViewContainerRef(vcr);
+
     this.route.params.subscribe(params=>{
       
       const key = params.key;
@@ -46,9 +51,10 @@ export class EditApproverComponent implements OnInit {
   update(approver){
     console.log(approver);
     this.approverService.updateApprover(approver.$key,approver).then(res=>{
-      this.router.navigate(['approver']);
+      this.router.navigate(['approver',{'key':'update'}]);      
     }).catch(e=>{
-      console.log(e);      
+      console.log(e);   
+      this.toastr.error(e, 'Oops!',{toastLife: 10000,showCloseButton: true});   
     })
     
   }

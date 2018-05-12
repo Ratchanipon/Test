@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PersonalService } from '../../service/personal.service';
 import { ApprovePersonal } from '../../model/ApprovePersonal';
 import * as firebase from 'firebase';
 import { NotifyService } from '../../service/notify.service';
+import { ToastsManager } from 'ng2-toastr';
 
 
 @Component({
@@ -19,8 +20,12 @@ export class ApprovePersonalComponent implements OnInit {
     private personalService:PersonalService,
     public router:Router,
     private route: ActivatedRoute,
-    private notifyService:NotifyService
+    private notifyService:NotifyService,
+    public toastr: ToastsManager, 
+    vcr: ViewContainerRef
   ) {
+    this.toastr.setRootViewContainerRef(vcr);
+
     this.route.params.subscribe(params=>{
       
       const key = params.key;
@@ -41,7 +46,7 @@ export class ApprovePersonalComponent implements OnInit {
     console.log(approvePersonal);
     this.personalService.updatePersonal(approvePersonal.$key,approvePersonal).then(res=>{      
       this.notifyService.sendNotificetionTo(approvePersonal.Personal.token,'Accept','The reviewer has already approved your information.');
-      this.router.navigate(['personal']);
+      this.router.navigate(['personal',{'key':'approve'}]);
     })
   }
 
@@ -51,7 +56,7 @@ export class ApprovePersonalComponent implements OnInit {
     console.log(approvePersonal);
     this.personalService.updatePersonal(approvePersonal.$key,approvePersonal).then(res=>{
       this.notifyService.sendNotificetionTo(approvePersonal.Personal.token,'Reject','The reviewer has already Reject your information.');
-      this.router.navigate(['personal']);
+      this.router.navigate(['personal',{'key':'reject'}]);
     })
   }
 

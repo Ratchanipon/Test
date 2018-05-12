@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { User } from '../../model/User';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ApproverService } from '../../service/approver.service';
 import { Approver } from '../../model/Approver';
 import { ToastsManager } from 'ng2-toastr';
@@ -26,11 +26,20 @@ export class ApproverComponent implements OnInit {
   constructor(
     private angularFireAuth:AngularFireAuth,
     public router:Router,
+    private route: ActivatedRoute,
     private approverService:ApproverService,
     public toastr: ToastsManager, 
     vcr: ViewContainerRef
   ) {
     this.toastr.setRootViewContainerRef(vcr);
+    this.route.params.subscribe(params=>{
+      let key = params.key;
+      if(key!=null){
+        this.toastr.success('Update Data!', 'Success!',{toastLife: 4000, showCloseButton: true});
+      }
+    });
+      
+      
    }
 
   ngOnInit() {
@@ -44,12 +53,13 @@ export class ApproverComponent implements OnInit {
 
         this.approverService.saveApprover(user.email,user.uid).then(result=>{
               //this.clear();
+            this.toastr.success('Save Data!', 'Success!',{toastLife: 3000, showCloseButton: true});
         }).catch(error=>{
           this.massage = error;
           console.log(this.massage);
-          this.toastr.success('You are awesome!', 'Success!',{toastLife: 3000, showCloseButton: true});
+          this.toastr.error(error.message, 'Oops!',{toastLife: 10000,showCloseButton: true});
         })      
-        
+        //this.toastr.success('Save Data!', 'Success!',{toastLife: 3000, showCloseButton: true});
       }).catch(error=>{
         this.massage = error;
         console.log(this.massage);      
@@ -109,6 +119,14 @@ export class ApproverComponent implements OnInit {
 
       this.approverService.sortObject(key,new_sort);
       this.getApprovers();
+  }
+
+  remove(approver:Approver){
+    this.approverService.removeApprover(approver.$key).then(res=>{
+      this.toastr.success('Remove Data!', 'Success!',{toastLife: 3000, showCloseButton: true});
+    }).catch(e=>{
+      this.toastr.error(e, 'Oops!',{toastLife: 10000,showCloseButton: true});
+    })
   }
 
 }

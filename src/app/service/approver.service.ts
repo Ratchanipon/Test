@@ -44,6 +44,10 @@ export class ApproverService {
     return this.database.object('approver/'+key).update(approver);
   }
 
+  removeApprover(key:string){
+    return this.database.list('approver/').remove(key);
+  }
+
 
   getNum_object(){
     this.database.list('approver/').subscribe(list=>{

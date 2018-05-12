@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { PersonalService } from '../../service/personal.service';
 import { ApprovePersonal } from '../../model/ApprovePersonal';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ToastsManager } from 'ng2-toastr';
 
 @Component({
   selector: 'app-personal',
@@ -15,7 +16,25 @@ export class PersonalComponent implements OnInit {
   constructor(
     private personalService:PersonalService,
     public router:Router,
-  ) { }
+    public toastr: ToastsManager, 
+    vcr: ViewContainerRef,
+    private route: ActivatedRoute,
+  ) {
+    this.toastr.setRootViewContainerRef(vcr);
+
+    this.route.params.subscribe(params=>{
+      let key = params.key;
+      if(key=='reject'){
+        this.toastr.success('Reject Personal!', 'Success!',{toastLife: 4000, showCloseButton: true});
+      }else if('approve'){
+        this.toastr.success('Approve Personal!', 'Success!',{toastLife: 4000, showCloseButton: true});
+      }else{
+        this.toastr.success('Welcome to  Personal Managment!', 'Hi!',{toastLife: 6000, showCloseButton: true});
+      }
+      
+    });
+
+   }
 
   ngOnInit() { 
     this.getAll();
