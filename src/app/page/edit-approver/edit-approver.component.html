@@ -8,11 +8,11 @@
     <div class="col-sm-6 form-edit">
           <div class="form-group">
             <label>Email</label>
-            <input type="text"      class="form-control"  placeholder="Email" [(ngModel)]="approver.email">
+            <input type="text"  class="form-control"  placeholder="Email" [(ngModel)]="approver.email" readonly required>
           </div>
           <div class="form-group">
               <label>TitleName</label>
-              <select class="custom-select" [(ngModel)]="approver.titleName">
+              <select class="custom-select" [(ngModel)]="approver.titleName" required>
                   <option selected>{{approver.titleName}}</option>
                   <option value="Mr.">Mr.</option>
                   <option value="Mis">Mis</option>
@@ -21,27 +21,29 @@
           </div>
           <div class="form-group">
               <label>FirstName</label>
-              <input type="text"      class="form-control"  placeholder="FirstName" [(ngModel)]="approver.firstName">
+              <input type="text" (change)="checkName()" class="form-control"   placeholder="FirstName" [(ngModel)]="approver.firstName" minlength="3" required>
           </div>
           <div class="form-group">
               <label>LastName</label>
-              <input type="text"      class="form-control"  placeholder="LastName" [(ngModel)]="approver.lastName">
+              <input type="text" (change)="checkName()" class="form-control"   placeholder="LastName" [(ngModel)]="approver.lastName" minlength="3" required>
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
               <label>JobPosition</label>
-              <select class="custom-select" [(ngModel)]="approver.jobPosition">
+              <select class="custom-select" [(ngModel)]="approver.jobPosition" required>
                   <option selected>{{approver.jobPosition}}</option>
                   <option value="admin">admin</option>
                   <option value="approver">approver</option>
               </select>
-          </div>
+          </div> -->
           <div class="form-group">
             <label>Picture</label>
-            <input type="file" id="avatar"   (change)="onFileChange($event)"  class="form-control" >
+            <input type="file" id="avatar"   (change)="onFileChange($event)"  class="form-control" required>
+            <input type="hidden" id="avatar" [(ngModel)]="approver.jobPosition" value="approver"   class="form-control" required>
           </div>
           <!-- <img *ngIf="imagePreview"[src]="sanitizer.bypassSecurityTrustUrl(imagePreview)"> -->
           <img  [src]="approver.pictureProfile" class="img-responsive">
-          <button type="button" (click)="update(approver)"    class="btn btn-success  float-right"  >Update</button>
+          <button *ngIf="submit" type="button" (click)="update(approver)"    class="btn btn-success  float-right"  >Update</button>
+          <button *ngIf="!submit" type="button" (click)="checkName()"  class="btn btn  float-right"  >Update</button>
     </div>
     
     <div class="col-sm-3">

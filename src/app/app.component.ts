@@ -23,11 +23,15 @@ export class AppComponent {
       if (user != null) {
         this.approverService.getApprover(user.uid).subscribe(user => {
           if (user.jobPosition == "admin") {
+            
+            sessionStorage.setItem('uid',user.jobPosition);
+            this.uid = sessionStorage.getItem('uid');
             this.router.navigate(['/approver']);
-            this.uid = user.jobPosition;
           }else if(user.jobPosition=="approver"&&user.statust==true){
+            
+            sessionStorage.setItem('uid',user.jobPosition);
+            this.uid = sessionStorage.getItem('uid');
             this.router.navigate(['/personal']);
-            this.uid = user.jobPosition;
           }
         });
         localStorage.setItem('uid',user.uid);

@@ -41,6 +41,8 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfileComponent } from './page/profile/profile.component';
 import { NotifyService } from './service/notify.service';
+import { ProfileApproverComponent } from './page/profile-approver/profile-approver.component';
+import { LoadingModule } from 'ngx-loading';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import { NotifyService } from './service/notify.service';
     SidebarComponent,
     ApprovePersonalComponent,
     PersonalComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfileApproverComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,8 @@ import { NotifyService } from './service/notify.service';
     AngularFireDatabaseModule,
     ImageUploadModule.forRoot(),
     Ng2ImgMaxModule,
-    ToastModule.forRoot()
+    ToastModule.forRoot(),
+    LoadingModule
   ],
   providers: [
     ApiServiceService,

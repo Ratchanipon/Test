@@ -32,22 +32,21 @@ export class ApproverComponent implements OnInit {
     vcr: ViewContainerRef
   ) {
     this.toastr.setRootViewContainerRef(vcr);
-    this.route.params.subscribe(params=>{
-      let key = params.key;
-      if(key!=null){
-        this.toastr.success('Update Data!', 'Success!',{toastLife: 4000, showCloseButton: true});
-      }
-    });
-      
-      
    }
 
   ngOnInit() {
     this.getApprovers();
+    let welcome = sessionStorage.getItem('welcome');
+    if(welcome=='true'){
+      this.toastr.success('Welcome Admin to Approver Management.', 'Welcome!',{toastLife: 4000, showCloseButton: true});
+      sessionStorage.clear();
+    }
+    
     
   }
 
   add(user:User){
+    
     if(user.email!=''&&user.password!=''){
       this.angularFireAuth.auth.createUserWithEmailAndPassword(user.email,user.password).then(user=>{
 
@@ -70,6 +69,8 @@ export class ApproverComponent implements OnInit {
     }else{
       this.toastr.error('Please fill in the information', 'Oops!',{toastLife: 10000,showCloseButton: true});
     }
+
+    this.user = {email:'',password:''};
     
   }
 
@@ -80,6 +81,10 @@ export class ApproverComponent implements OnInit {
 
   async getApprovers(){
     await this.approverService.getApproverList().subscribe(list=>{
+          
+          list.filter(ob=>{
+            ob.jobPosition = 'approver';
+          })
           this.approvers = list.sort((a, b) => a.sort - b.sort);
           //console.log(this.approvers);          
     });

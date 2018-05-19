@@ -22,22 +22,29 @@ export class PersonalComponent implements OnInit {
   ) {
     this.toastr.setRootViewContainerRef(vcr);
 
-    this.route.params.subscribe(params=>{
-      let key = params.key;
-      if(key=='reject'){
-        this.toastr.success('Reject Personal!', 'Success!',{toastLife: 4000, showCloseButton: true});
-      }else if('approve'){
-        this.toastr.success('Approve Personal!', 'Success!',{toastLife: 4000, showCloseButton: true});
-      }else{
-        this.toastr.success('Welcome to  Personal Managment!', 'Hi!',{toastLife: 6000, showCloseButton: true});
-      }
-      
-    });
+    
 
    }
 
   ngOnInit() { 
     this.getAll();
+
+    this.route.params.subscribe(params=>{
+      let key = params.key;
+      if(key=='reject'){
+        this.toastr.success('Reject Personal!', 'Success!',{toastLife: 4000, showCloseButton: true});
+      }else if(key=='approve'){
+        this.toastr.success('Approve Personal!', 'Success!',{toastLife: 4000, showCloseButton: true});
+      }else{
+        let welcome = sessionStorage.getItem('welcome');
+        if(welcome=='true'){
+          this.toastr.success('Welcome to  Personal Managment!', 'Hi!',{toastLife: 6000, showCloseButton: true});
+          sessionStorage.clear();
+        }
+        
+      }
+      
+    });
   }
 
   async getAll(){

@@ -36,6 +36,14 @@ export class NavComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  account(){
+    this.angularFireAuth.authState.subscribe(user=>{
+      
+      this.router.navigate(['/account',{'key':user.uid}]);
+
+    })
+  }
+
   resetPassword(){
     this.angularFireAuth.authState.subscribe(user=>{
       this.angularFireAuth.auth.sendPasswordResetEmail(user.email).then(res=>{

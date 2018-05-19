@@ -8,6 +8,8 @@ import { ApproverComponent } from "./page/approver/approver.component";
 import { EditApproverComponent } from "./page/edit-approver/edit-approver.component";
 import { PersonalComponent } from "./page/personal/personal.component";
 import { ApprovePersonalComponent } from "./page/approve-personal/approve-personal.component";
+import { ProfileApproverComponent } from "./page/profile-approver/profile-approver.component";
+import { ProfileComponent } from "./page/profile/profile.component";
 
 
 export const routes: Routes = [
@@ -15,6 +17,7 @@ export const routes: Routes = [
   { path:'user', component: UserComponent },
   { path:'approver', component: ApproverComponent },
   { path:'approver-edit', component: EditApproverComponent },
+  { path:'account', component: ProfileComponent },
   { path:'personal', component: PersonalComponent },
   { path:'view-personal', component: ApprovePersonalComponent },
 ];

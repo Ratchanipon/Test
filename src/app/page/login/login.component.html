@@ -1,17 +1,17 @@
 <div class="row" style="text-align: center; ">
   <div class="col-sm-4"></div>
   <div class="col-sm-4" id="login">
-    <img class="logo" src="assets/img/authentication.png"  >
+    <img class="logo" src="assets/img/LOGOPJ1.png">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <!-- <form> -->
-      <div class="form-group">{{user.email}}
+      <div class="form-group">
         <input type="text"      class="form-control"  placeholder="Email" [(ngModel)]="user.email">
         <input type="password"  class="form-control"  placeholder="Password" [(ngModel)]="user.password">
       </div>
-      <div class="form-check">
+      <!-- <div class="form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div>
+      </div> -->
       <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="login(user)">Login</button>
    <!--  </form> -->
       <!-- <div *ngIf="message" class="alert alert-danger" role="alert">
@@ -26,6 +26,11 @@
   </div>
   <div class="col-sm-4 "></div>
 </div>
+
+<!-- <div class="my-container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+  OK
+</div> -->
 
 
 

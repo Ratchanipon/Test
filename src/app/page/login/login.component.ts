@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   user:User = {email:'anusondd@hotmail.com',password:'21519097'};
   message:string;
   approver:Approver;
+  loading:boolean = true;
 
   profile:UserInfo;
   constructor(
@@ -39,18 +40,21 @@ export class LoginComponent implements OnInit {
                     console.log(user);
                     if(user!=null){
                       this.approverService.getApprover(user.uid).subscribe(user=>{
+                        
                         this.toastr.success('Welcome '+user.email, 'Success!',{toastLife: 3000, showCloseButton: true});
                         
-                        if(user.jobPosition=="admin"){                          
-                          //this.router.navigate(['/approver']);
-                          setTimeout(() =>{
-                            this.router.navigate(['/approver']);
-                          },5000);
+                        if(user.jobPosition=="admin"){    
+                          sessionStorage.setItem('welcome','true');                      
+                          this.router.navigate(['/approver']);
+                          // setTimeout(() =>{
+                          //   this.router.navigate(['/approver']);
+                          // },5000);
                         }else if(user.jobPosition=="approver"&&user.statust==true){
-                          //this.router.navigate(['/personal']);
-                          setTimeout(() =>{
-                            this.router.navigate(['/personal']);
-                          },5000);
+                          sessionStorage.setItem('welcome','true');
+                          this.router.navigate(['/personal']);
+                          // setTimeout(() =>{
+                          //   this.router.navigate(['/personal']);
+                          // },5000);
                         }
 
                       });
