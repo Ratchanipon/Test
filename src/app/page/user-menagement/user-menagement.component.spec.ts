@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditApproverComponent } from './edit-approver.component';
+import { UserMenagementComponent } from './user-menagement.component';
 
-describe('EditApproverComponent', () => {
-  let component: EditApproverComponent;
-  let fixture: ComponentFixture<EditApproverComponent>;
+describe('UserMenagementComponent', () => {
+  let component: UserMenagementComponent;
+  let fixture: ComponentFixture<UserMenagementComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditApproverComponent ]
+      declarations: [ UserMenagementComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditApproverComponent);
+    fixture = TestBed.createComponent(UserMenagementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

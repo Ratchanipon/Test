@@ -21,20 +21,9 @@ export class AppComponent {
   ) {
     this.angularFireAuth.authState.subscribe(user => {
       if (user != null) {
-        this.approverService.getApprover(user.uid).subscribe(user => {
-          if (user.jobPosition == "admin") {
-            
-            sessionStorage.setItem('uid',user.jobPosition);
+            sessionStorage.setItem('uid',user.uid);
             this.uid = sessionStorage.getItem('uid');
-            this.router.navigate(['/approver']);
-          }else if(user.jobPosition=="approver"&&user.statust==true){
-            
-            sessionStorage.setItem('uid',user.jobPosition);
-            this.uid = sessionStorage.getItem('uid');
-            this.router.navigate(['/personal']);
-          }
-        });
-        localStorage.setItem('uid',user.uid);
+            this.router.navigate(['/user']);
       } else {
         this.uid = null;
         this.router.navigate(['/']);

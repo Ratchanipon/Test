@@ -1,4 +1,12 @@
 export interface User {
-    email:string;
-    password:string;
+    key?:string;
+    user_id:string;
+    name:string
+    last_name:string
+    email:string
+    password:string
+    sex:string
+    age:string
+    
+    permission:string
 }

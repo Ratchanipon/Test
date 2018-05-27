@@ -13,23 +13,23 @@ export class UserService {
 
   saveUser(user:User){
     //user.sort = this.countUser();
-    return this.database.list('user/').push(user);
+    return this.database.list('User/').push(user);
   }
 
   getUserList():FirebaseListObservable<User[]>{
-    return this.database.list('user/');
+    return this.database.list('User/');
   }
 
   updateUser(key:string,user:User){
-    return this.database.list('user/').update(key,user);
+    return this.database.list('User/').update(key,user);
   }
 
   removeUser(key:string){
-    return this.database.list('user/').remove(key);
+    return this.database.list('User/').remove(key);
   }
 
   countUser(){
-    this.database.list('user/').subscribe(list=>{
+    this.database.list('User/').subscribe(list=>{
         this.sort = list.length+1;
     })
     return this.sort;

@@ -2,10 +2,11 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { User } from '../../model/User';
 import { AngularFireAuth } from 'angularfire2/auth';
 import {  Router } from '@angular/router';
-import { UserInfo } from '@firebase/auth-types';
+// import { UserInfo } from '@firebase/auth-types';
 import { Approver } from '../../model/Approver';
 import { ApproverService } from '../../service/approver.service';
 import { ToastsManager } from 'ng2-toastr';
+import { Admin } from '../../model/admin';
 
 @Component({
   selector: 'app-login',
@@ -14,12 +15,12 @@ import { ToastsManager } from 'ng2-toastr';
 })
 export class LoginComponent implements OnInit {
 
-  user:User = {email:'anusondd@hotmail.com',password:'21519097'};
+  user:Admin = {email:'',password:''};
   message:string;
   approver:Approver;
   loading:boolean = true;
 
-  profile:UserInfo;
+  // profile:UserInfo;
   constructor(
     private angularFireAuth:AngularFireAuth,
     public router:Router,
@@ -33,31 +34,16 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(user:User){
+  login(user:Admin){
     
       this.angularFireAuth.auth.signInWithEmailAndPassword(user.email,user.password)
                 .then(user=>{
                     console.log(user);
                     if(user!=null){
-                      this.approverService.getApprover(user.uid).subscribe(user=>{
-                        
-                        this.toastr.success('Welcome '+user.email, 'Success!',{toastLife: 3000, showCloseButton: true});
-                        
-                        if(user.jobPosition=="admin"){    
-                          sessionStorage.setItem('welcome','true');                      
-                          this.router.navigate(['/approver']);
-                          // setTimeout(() =>{
-                          //   this.router.navigate(['/approver']);
-                          // },5000);
-                        }else if(user.jobPosition=="approver"&&user.statust==true){
-                          sessionStorage.setItem('welcome','true');
-                          this.router.navigate(['/personal']);
-                          // setTimeout(() =>{
-                          //   this.router.navigate(['/personal']);
-                          // },5000);
-                        }
 
-                      });
+                      this.toastr.success('Welcome '+user.email, 'Success!',{toastLife: 3000, showCloseButton: true});
+                      sessionStorage.setItem('welcome','true');                      
+                      this.router.navigate(['/user']);
                     }else{
                       //this.router.navigate(['/']);
                       this.toastr.error('Email and password are wrong.', 'Oops!',{toastLife: 10000,showCloseButton: true});

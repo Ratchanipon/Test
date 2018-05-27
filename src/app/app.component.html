@@ -1,9 +1,15 @@
 
- <app-nav *ngIf="uid=='approver'||uid=='admin'"></app-nav>
- 
- <!-- <app-sidebar *ngIf="uid" ></app-sidebar> -->
-<router-outlet></router-outlet>
-
+<app-nav *ngIf="uid"></app-nav>
+<div class="container-fluid" style="margin-top: 80px;">
+    <div class="row">       
+        <nav class="col-lg-2 col-md-4 col-sm-6 col-sx-6 bg-faded sidebar">
+            <app-sidebar *ngIf="uid" ></app-sidebar>
+        </nav>
+        <main class="col-lg-10 offset-lg-10 col-md-8 offset-md-8 col-sm-6 offset-sm-6 col-sx-6 offset-sx-6 " style="margin-left: 0px;">
+            <router-outlet></router-outlet>
+        </main>        
+    </div>    
+</div>
 
 
 
