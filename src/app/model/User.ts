@@ -1,5 +1,5 @@
 export interface User {
-    key?:string;
+    $key?:string;
     user_id:string;
     name:string
     last_name:string
@@ -8,5 +8,5 @@ export interface User {
     sex:string
     age:string
     
-    permission:string
+    permission:boolean
 }

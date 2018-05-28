@@ -24,6 +24,10 @@ export class UserService {
     return this.database.list('User/').update(key,user);
   }
 
+  permissionUser(key:string,user:User){
+    return this.database.object('User/'+key).update(user);
+  }
+
   removeUser(key:string){
     return this.database.list('User/').remove(key);
   }

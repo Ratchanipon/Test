@@ -38,6 +38,9 @@ import { UserMenagementComponent } from './page/user-menagement/user-menagement.
 import { CategoryMenagementComponent } from './page/category-menagement/category-menagement.component';
 import { ProjectMenagementComponent } from './page/project-menagement/project-menagement.component';
 import { ActicleMenagementComponent } from './page/acticle-menagement/acticle-menagement.component';
+import { VideoMenagementComponent } from './page/video-menagement/video-menagement.component';
+import { CategoryService } from './service/category.service';
+import { ProjectService } from './service/project.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,8 @@ import { ActicleMenagementComponent } from './page/acticle-menagement/acticle-me
     UserMenagementComponent,
     CategoryMenagementComponent,
     ProjectMenagementComponent,
-    ActicleMenagementComponent
+    ActicleMenagementComponent,
+    VideoMenagementComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +82,10 @@ import { ActicleMenagementComponent } from './page/acticle-menagement/acticle-me
     ApproverService,
     UploadsService,
     PersonalService,
-    NotifyService
+    NotifyService,
+    CategoryService,
+    ProjectService,
+    
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public router: Router,
+  ) { }
 
 
   menus=[
@@ -17,23 +20,27 @@ export class SidebarComponent implements OnInit {
     },
     {
       name:"จัดการหมวดหมู่โครงการ",
-      url:"user"
+      url:"category"
     },
     {
       name:"จัดการโครงการ",
-      url:"user"
+      url:"project"
     },
     {
       name:"จัดกาบทความ",
-      url:"user"
+      url:"acticle"
     },
     {
       name:"วิดีโอแนะนำ",
-      url:"user"
+      url:"video"
     }
   ]
 
   ngOnInit() {
+  }
+
+  gotoPage(url){
+    this.router.navigate(['/'+url]);
   }
 
 }

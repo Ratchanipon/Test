@@ -1,3 +1,173 @@
-<p>
-  project-menagement works!
-</p>
+<section id="index" *ngIf="section=='index'">
+  <h1>จัดการโครงการ</h1>
+  <h3 style="text-align: center;">ตารางจัดการโครงการ</h3>
+  <button class="btn btn-primary float-right" (click)="gotoAdd()">เพิ่มโครงการ</button>
+  <br>
+  <br>
+  <br>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th style="width: 5%;">ลำดับ</th>
+          <th style="width: 20%;">ชื่อโครงการ</th>
+          <th style="width: 20%;">หมวดหมู่</th>
+          <th style="width: 20%;">รูปภาพโครงการ</th>
+          <th style="width: 20%;">วิดีโอโครงการ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr *ngFor="let user of userList">
+        <td>1</td>
+        <td>{{user.name}}</td>
+        <td>{{user.last_name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.sex}}</td>
+        <td>{{user.age}}</td>
+        <td>
+          <button *ngIf="user.permission==false" (click)="permission(user)"  class="btn btn-danger" >คลิกเพื่อเปิด</button>
+          <button *ngIf="user.permission==true"  (click)="permission(user)" class="btn btn-success" >คลิกเพื่อปิด</button>
+        </td>
+      </tr>
+       -->
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+<section id="add" *ngIf="section=='add'">
+  <div class="col-lg-8">
+    <h1>เพิ่มหมวดหมู่โครงการ</h1>
+    <button class="btn btn-danger float-left" (click)="gotoIndex()">กลับ</button>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">รูปปกหมวดหมู่ กว้าง 512px * สูง 288px</span>
+      </div>
+      <div class="custom-file">
+        <input type="file" (change)="onFileChange($event)" class="custom-file-input" id="inputGroupFile01">
+        <input type="hidden" id="avatar" [(ngModel)]="project.imageproject" value="" class="form-control" required>
+        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+      </div>
+    </div>
+    <img [src]="project.imageproject" class="img-responsive">
+
+    <div class="form-group">
+      <label for="exampleFormControlInput1">=ชื่อ</label>
+      <input type="text" class="form-control" [(ngModel)]="project.name" placeholder="name@example.com">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">หมวดหมู่</label>
+      <select class="form-control" [(ngModel)]="project.category" id="exampleFormControlSelect1">
+        <option value="เชียงใหม่">เชียงใหม่</option>
+        <option value="แม่ฮ่องสอน">แม่ฮ่องสอน</option>
+        <option value="เชียงราย">เชียงราย</option>
+        <option value="พะเยา">พะเยา</option>
+        <option value="แพร่">แพร่</option>
+        <option value="ลำปาง">ลำปาง</option>
+        <option value="ลำพูน">ลำพูน</option>
+
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">รายละเอียด</label>
+      <textarea [(ngModel)]="project.detail" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlInput1">=ที่ตั้ง</label>
+      <input type="text" class="form-control" [(ngModel)]="project.location" placeholder="name@example.com">
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlInput1">วิดีโอโครงการ</label>
+      <input type="text" class="form-control" [(ngModel)]="project.video" placeholder="name@example.com">
+    </div>
+    <iframe width="560" height="315" src="youtube(project.video)" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">ข้อมูลติดต่อ</label>
+      <input type="text" class="form-control" [(ngModel)]="project.contact" placeholder="name@example.com">
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlInput1">ร้านค้าโครงการ</label>
+      <input type="text" class="form-control" [(ngModel)]="project.store" placeholder="name@example.com">
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlInput1">ที่พักใกล็เคียง</label>
+      <input type="text" class="form-control" [(ngModel)]="project.hostelry" placeholder="name@example.com">
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlInput1">สถานที่ท่องเที่ยวใกล้เคียง</label>
+      <input type="text" class="form-control" [(ngModel)]="project.travel" placeholder="name@example.com">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">รูปปกหมวดหมู่ กว้าง 512px * สูง 288px</span>
+      </div>
+      <div class="custom-file">
+        <input type="file" (change)="onFileChange($event)" class="custom-file-input" id="inputGroupFile01">
+        <input type="hidden" id="avatar" [(ngModel)]="project.gallery" value="" class="form-control" required>
+        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+      </div>
+    </div>
+    <img *ngFor="let img of  project.gallery" [src]="img.image" class="img-responsive">
+    <button class="btn btn-success float-right" (click)="save(project)">เพิ่มข้อมูล</button>
+  </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+</section>
+
+<section id="edit" *ngIf="section=='edit'">
+  <div class="col-lg-8">
+    <h1>แก้ไขหมวดหมู่โครงการ</h1>
+    <button class="btn btn-danger float-left" (click)="gotoIndex()">กลับ</button>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">หมวดหมู่</label>
+      <select class="form-control" [(ngModel)]="category.name" id="exampleFormControlSelect1">
+        <option value="เชียงใหม่">เชียงใหม่</option>
+        <option value="แม่ฮ่องสอน">แม่ฮ่องสอน</option>
+        <option value="เชียงราย">เชียงราย</option>
+        <option value="พะเยา">พะเยา</option>
+        <option value="แพร่">แพร่</option>
+        <option value="ลำปาง">ลำปาง</option>
+        <option value="ลำพูน">ลำพูน</option>
+
+      </select>
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">รูปปกหมวดหมู่ กว้าง 512px * สูง 288px</span>
+      </div>
+      <div class="custom-file">
+        <input type="file" (change)="onFileChange($event)" class="custom-file-input" id="inputGroupFile01">
+        <input type="hidden" id="avatar" [(ngModel)]="category.image" value="" class="form-control" required>
+        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+      </div>
+    </div>
+    <img [src]="category.image" class="img-responsive">
+    <button class="btn btn-success float-right" (click)="update(category)">บันทึกข้อมูล</button>
+  </div>
+
+</section>
