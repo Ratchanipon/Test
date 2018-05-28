@@ -41,6 +41,7 @@ import { ActicleMenagementComponent } from './page/acticle-menagement/acticle-me
 import { VideoMenagementComponent } from './page/video-menagement/video-menagement.component';
 import { CategoryService } from './service/category.service';
 import { ProjectService } from './service/project.service';
+// import { YoutubePipe } from './pipe/youtube.pipe';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ProjectService } from './service/project.service';
     CategoryMenagementComponent,
     ProjectMenagementComponent,
     ActicleMenagementComponent,
-    VideoMenagementComponent
+    VideoMenagementComponent,
+    // YoutubePipe
   ],
   imports: [
     BrowserModule,

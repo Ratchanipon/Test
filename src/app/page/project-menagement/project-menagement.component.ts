@@ -14,7 +14,7 @@ export class ProjectMenagementComponent implements OnInit {
   [x: string]: any;
   constructor(
     private projectService:ProjectService,
-    private domSanitizer:DomSanitizer
+    // private domSanitizer:DomSanitizer
   ) { }
   projectlist:Project[]
 
@@ -22,9 +22,9 @@ export class ProjectMenagementComponent implements OnInit {
     
   }
 
-  async youtube(url){
-    return await this.domSanitizer.bypassSecurityTrustResourceUrl(url);
-  }
+  // async youtube(url){
+  //   return await this.domSanitizer.bypassSecurityTrustResourceUrl(url);
+  // }
 
   getlist(){
     this.projectService.getList().subscribe(list=>{
@@ -82,11 +82,13 @@ export class ProjectMenagementComponent implements OnInit {
       picture.putString(reader.result,'data_url').then(res=>{
         console.log('picture:',res); 
         // this.approver.pictureProfile =  res.downloadURL; 
-        this.category.image = res.downloadURL;
+        this.project.imageproject = res.downloadURL;
       }).catch(e=>{
         console.error(e);        
       })  
          
     };
   }
+
+  
 }
