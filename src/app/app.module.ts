@@ -41,7 +41,9 @@ import { ActicleMenagementComponent } from './page/acticle-menagement/acticle-me
 import { VideoMenagementComponent } from './page/video-menagement/video-menagement.component';
 import { CategoryService } from './service/category.service';
 import { ProjectService } from './service/project.service';
-// import { YoutubePipe } from './pipe/youtube.pipe';
+import { ApiYoutubePipe } from './pipe/api-youtube.pipe';
+import { ApiMapPipe } from './pipe/api-map.pipe';
+import { VideoService } from './service/video.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ import { ProjectService } from './service/project.service';
     ProjectMenagementComponent,
     ActicleMenagementComponent,
     VideoMenagementComponent,
-    // YoutubePipe
+    ApiYoutubePipe,
+    ApiMapPipe
   ],
   imports: [
     BrowserModule,
@@ -87,6 +90,7 @@ import { ProjectService } from './service/project.service';
     NotifyService,
     CategoryService,
     ProjectService,
+    VideoService
     
   ],
   bootstrap: [AppComponent]

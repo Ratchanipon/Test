@@ -25,6 +25,10 @@ export class ProjectService {
     return this.database.list('/project').update(project.$key,project);
   }
 
+  delete(project:Project){
+    //user.sort = this.countUser();
+    return this.database.list('/project').remove(project.$key);
+  }
 
 
 }
