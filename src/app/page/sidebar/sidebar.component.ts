@@ -27,7 +27,7 @@ export class SidebarComponent implements OnInit {
       url:"project"
     },
     {
-      name:"จัดกาบทความ",
+      name:"จัดการบทความ",
       url:"acticle"
     },
     {

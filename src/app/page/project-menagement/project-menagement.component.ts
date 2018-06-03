@@ -44,7 +44,7 @@ export class ProjectMenagementComponent implements OnInit {
     })
   }
   section:string="index";
-  project:Project={category:'',contact:'',detail:'',hostelry:'',imageproject:'',gallery:null,location:'',name:'',store:'',travel:'',video:'E0xGHOS0xWA',};
+  project:Project={status:true,home:true,category:'',contact:'',detail:'',hostelry:'',imageproject:'',gallery:null,location:'',name:'',store:'',travel:'',video:'',};
 
   gotoAdd(){
     this.section = "add";
@@ -56,6 +56,8 @@ export class ProjectMenagementComponent implements OnInit {
   update(project:Project){
     this.projectService.update(project).then(res=>{
       this.section = "index"
+      this.project = {status:true,home:true,category:'',contact:'',detail:'',hostelry:'',imageproject:'',gallery:null,location:'',name:'',store:'',travel:'',video:'',};
+      this.project.gallery = [];
     })
 
   }
@@ -71,6 +73,8 @@ export class ProjectMenagementComponent implements OnInit {
   save(project:Project){
       this.projectService.save(project).then(res=>{
         this.section = "index";
+        this.project = {status:true,home:true,category:'',contact:'',detail:'',hostelry:'',imageproject:'',gallery:null,location:'',name:'',store:'',travel:'',video:'',};
+        this.project.gallery = [];
       })
   }
   onFileChange(event) {
@@ -160,6 +164,28 @@ export class ProjectMenagementComponent implements OnInit {
     console.log(res);    
     console.log("gallery====",this.project.gallery);
     
+    
+  }
+
+  status(project:Project){
+    if(project.status==true){
+      project.status = false;
+      this.projectService.update(project);
+    }else{
+      project.status = true;
+      this.projectService.update(project);
+    }
+    
+  }
+
+  home(project:Project){
+    if(project.home==true){
+      project.home = false;
+      this.projectService.update(project);
+    }else{
+      project.home = true;
+      this.projectService.update(project);
+    }
     
   }
 

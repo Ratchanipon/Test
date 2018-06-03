@@ -1,3 +1,4 @@
+<section id="index" *ngIf="section=='index'">
 <h1>จัดการบทความ</h1>
 
 <h3 style="text-align: center;">ตารางจัดการบทความ</h3>
@@ -6,25 +7,56 @@
     <thead>
       <tr>
         <th style="width: 5%;" >ลำดับ</th>
-        <th style="width: 20%;" >ชื่อบทความ</th>
-        <th style="width: 20%;" >รูปภาพบทความ</th>
-        <th style="width: 20%;" >หมวดหมู่</th>
+        <th style="width: 10%;" >ชื่อบทความ</th>
+        <th style="width: 15%;" >รายละเอียด</th>
+        <th style="width: 20%;" >รูปภาพ</th>
+        <th style="width: 20%;" >สถานะ</th>
+        <th style="width: 10%;" >จัดการ</th>
+       
       </tr>
     </thead>
     <tbody>
-      <!-- <tr *ngFor="let user of userList">
-        <td>1</td>
-        <td>{{user.name}}</td>
-        <td>{{user.last_name}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.sex}}</td>
-        <td>{{user.age}}</td>
+      <tr *ngFor="let article of creatarticle; let i = index;">
+        <td>{{i+1}}</td>
+        <td>{{article.name}}</td>
+        <td>{{article.detail | slice:0:60}}</td>
         <td>
-          <button *ngIf="user.permission==false" (click)="permission(user)"  class="btn btn-danger" >คลิกเพื่อเปิด</button>
-          <button *ngIf="user.permission==true"  (click)="permission(user)" class="btn btn-success" >คลิกเพื่อปิด</button>
+          <img src="http://qnimate.com/wp-content/uploads/2014/03/images2.jpg" width="100" height="100">
+        </td>
+        <td>
+            <button *ngIf="article.status =='wait'"  class="btn btn-primary">รออนุมัติ</button>
+            <button *ngIf="article.status =='approve'" class="btn btn-success">อนุมัติ</button>
+            <button *ngIf="article.status =='reject'" class="btn btn-danger">ไม่อนุมัติ</button>
+        </td>
+        <td>
+          <button  class="btn btn-success" (click)="gotodetail(article)" >ดูรายละเอียด</button>
         </td>
       </tr>
-       -->
+      
     </tbody>
   </table>
 </div>
+</section>
+
+<section id="detail" *ngIf="section=='detail'">
+    <div class="col-lg-8">
+        <h1>รายละเอียดบทความ</h1>
+        <button class="btn btn-danger float-left" (click)="gotoIndex()" >กลับ</button>
+        <br>
+        <br>
+        <br>
+        <br>
+        <ul class="list-group">
+            <li class="list-group-item"> ชื่อบทความ : {{article.name}}</li>
+            <li class="list-group-item"> รายละเอียด : {{article.detail}}</li>
+        </ul>        
+        <br>
+        <br>
+        <br>
+        <br>
+        <button class="btn btn-success float-right" (click)="approve()" >อนุมัติ</button>
+        <button class="btn btn-danger float-right" (click)="reject()" >ไม่อนุมัติ</button>
+    </div> 
+</section>
+
+

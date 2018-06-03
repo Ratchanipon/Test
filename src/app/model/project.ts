@@ -12,8 +12,6 @@ export interface Project{
     gallery:Gallery[]
     travel:string
     hostelry:string
-
-
-
-
+    status:boolean
+    home:boolean
 }

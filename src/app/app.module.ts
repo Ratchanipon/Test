@@ -44,6 +44,7 @@ import { ProjectService } from './service/project.service';
 import { ApiYoutubePipe } from './pipe/api-youtube.pipe';
 import { ApiMapPipe } from './pipe/api-map.pipe';
 import { VideoService } from './service/video.service';
+import { ActicleService } from './service/acticle.service';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import { VideoService } from './service/video.service';
     NotifyService,
     CategoryService,
     ProjectService,
-    VideoService
+    VideoService,
+    ActicleService
     
   ],
   bootstrap: [AppComponent]

@@ -24,7 +24,7 @@
           </td>
           <td>
             <button class="btn btn-info"  (click)="gotoEdit(category)" >แก้ไข</button>
-            <button class="btn btn-danger">ลบ</button>
+            <button class="btn btn-danger" (click)="delete(category)" class="btn btn-danger">ลบ</button>
           </td>
           <!-- <td>
             <button *ngIf="user.permission==false" (click)="permission(user)"  class="btn btn-danger" >คลิกเพื่อเปิด</button>
@@ -49,7 +49,7 @@
   
     <div class="form-group">
       <label for="exampleFormControlSelect1">หมวดหมู่</label>
-    <select class="form-control" [(ngModel)]="category.name" id="exampleFormControlSelect1">
+    <select class="form-control" [(ngModel)]="category.name" (change)="sreach(category)" id="exampleFormControlSelect1">
         <option value="เชียงใหม่" >เชียงใหม่</option>
         <option value="แม่ฮ่องสอน" >แม่ฮ่องสอน</option>
         <option value="เชียงราย" >เชียงราย</option>
@@ -88,16 +88,7 @@
   
     <div class="form-group">
       <label for="exampleFormControlSelect1">หมวดหมู่</label>
-    <select class="form-control" [(ngModel)]="category.name" id="exampleFormControlSelect1">
-        <option value="เชียงใหม่" >เชียงใหม่</option>
-        <option value="แม่ฮ่องสอน" >แม่ฮ่องสอน</option>
-        <option value="เชียงราย" >เชียงราย</option>
-        <option value="พะเยา">พะเยา</option>
-        <option value="แพร่">แพร่</option>
-        <option value="ลำปาง">ลำปาง</option>
-        <option value="ลำพูน">ลำพูน</option>
-        
-      </select>
+      <input type="text" class="form-control" [(ngModel)]="category.name" readonly id="exampleInputEmail1" aria-describedby="emailHelp" >
     </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">

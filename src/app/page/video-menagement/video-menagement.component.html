@@ -14,8 +14,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let video of videoList">
-          <td>1</td>
+        <tr *ngFor="let video of videoList; let i =index">
+          <td>{{i+1}}</td>
           <td>{{video.name}}</td>
           <td>{{video.detail}}</td>
           <td>{{video.category}}</td>
@@ -50,14 +50,7 @@
     <div class="form-group">
       <label for="exampleFormControlSelect1">หมวดหมู่</label>
       <select class="form-control" [(ngModel)]="video.category" id="exampleFormControlSelect1">
-        <option value="ศูนย์พัฒนาโครงการหลวงขุนแปะ">ศูนย์พัฒนาโครงการหลวงขุนแปะ</option>
-        <option value="ศูนย์พัฒนาโครงการหลวงห้วยเสี้ยว">ศูนย์พัฒนาโครงการหลวงห้วยเสี้ยว</option>
-        <option value="ศูนย์พัฒนาโครงการหลวงแม่ลาน้อย">ศูนย์พัฒนาโครงการหลวงแม่ลาน้อย</option>
-        <option value="ศูนย์พัฒนาโครงการหลวงแม่สะป๊อก">ศูนย์พัฒนาโครงการหลวงแม่สะป๊อก</option>
-        <option value="แพร่">แพร่</option>
-        <option value="ลำปาง">ลำปาง</option>
-        <option value="ลำพูน">ลำพูน</option>
-
+        <option *ngFor="let project of projectList" value="{{project.name}}">{{project.name}}</option>
       </select>
     </div>
 
@@ -92,14 +85,7 @@
     <div class="form-group">
       <label for="exampleFormControlSelect1">หมวดหมู่</label>
       <select class="form-control" [(ngModel)]="video.category" id="exampleFormControlSelect1">
-        <option value="ศูนย์พัฒนาโครงการหลวงขุนแปะ">ศูนย์พัฒนาโครงการหลวงขุนแปะ</option>
-        <option value="ศูนย์พัฒนาโครงการหลวงห้วยเสี้ยว">ศูนย์พัฒนาโครงการหลวงห้วยเสี้ยว</option>
-        <option value="ศูนย์พัฒนาโครงการหลวงแม่ลาน้อย">ศูนย์พัฒนาโครงการหลวงแม่ลาน้อย</option>
-        <option value="ศูนย์พัฒนาโครงการหลวงแม่สะป๊อก">ศูนย์พัฒนาโครงการหลวงแม่สะป๊อก</option>
-        <option value="แพร่">แพร่</option>
-        <option value="ลำปาง">ลำปาง</option>
-        <option value="ลำพูน">ลำพูน</option>
-
+        <option *ngFor="let project of projectList" value="{{project.name}}">{{project.name}}</option>
       </select>
     </div>
 
@@ -113,6 +99,6 @@
       <input type="text" class="form-control" [(ngModel)]="video.link" placeholder="ลิงค์วิดีโอ">
     </div>
     <iframe class="e2e-iframe-trusted-src" width="500" height="300" [src]="video.link | apiYoutube"></iframe>
-    <button class="btn btn-success float-right" (click)="save(video)">บันทึกข้อมูล</button>
+    <button class="btn btn-success float-right" (click)="update(video)">บันทึกข้อมูล</button>
   </div>
 </section>

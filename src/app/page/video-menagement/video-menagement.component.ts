@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { VideoService } from '../../service/video.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Video } from '../../model/video';
+import { Project } from '../../model/project';
+import { ProjectService } from '../../service/project.service';
 
 @Component({
   selector: 'app-video-menagement',
@@ -14,9 +16,11 @@ import { Video } from '../../model/video';
 export class VideoMenagementComponent implements OnInit {
 
   videoList: Video[];
+  projectList:Project[];
 
   constructor(
     private videoService: VideoService,
+    private projectService:ProjectService,
     private angularFireAuth: AngularFireAuth) {
 
     this.videoService.getList().subscribe(list => {
@@ -26,8 +30,15 @@ export class VideoMenagementComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.getProjectList();
   }
+
+  getProjectList(){
+    this.projectService.getList().subscribe(list=>{
+      this.projectList = list;
+    })
+  }
+
   section: string = "index";
   video: Video = { name: '', category: '', detail: '', link: '' };
   gotoIndex() {
@@ -36,11 +47,13 @@ export class VideoMenagementComponent implements OnInit {
 
   gotoAdd() {
     this.section = "add";
+    
   }
 
   save(video: Video) {
     this.videoService.save(video).then(res => {
       this.section = "index";
+      this.video = { name: '', category: '', detail: '', link: '' };
     })
   }
   gotoEdit(video: Video) {
@@ -57,6 +70,7 @@ export class VideoMenagementComponent implements OnInit {
   update(video:Video){
     this.videoService.update(video).then(res=>{
       this.section = "index"
+      this.video = { name: '', category: '', detail: '', link: '' };
     })
 
   }

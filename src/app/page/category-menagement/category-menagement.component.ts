@@ -32,12 +32,21 @@ export class CategoryMenagementComponent implements OnInit {
   ngOnInit() {
   }
 
+  sreach(category:Category){
+    this.categoryService.search(category.name).subscribe(list=>{
+      console.log(list.length);  
+      if(list.length>0){
+        this.category.name = '';
+      }    
+    })
+  }
+
   getCategoryList(){
     this.categoryService.getList().subscribe(list=>{
       this.categoryList= list;
     })
   }
-
+  
   gotoAdd(){
     this.section = "add";
   }
@@ -51,6 +60,14 @@ export class CategoryMenagementComponent implements OnInit {
     })
 
   }
+
+  delete(category:Category){
+    this.categoryService.delete(category).then(res=>{
+      this.section = "index"
+    })
+
+  }
+  
   gotoIndex(){
     this.section = "index";
   }
