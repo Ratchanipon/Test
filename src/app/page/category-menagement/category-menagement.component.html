@@ -24,7 +24,7 @@
           </td>
           <td>
             <button class="btn btn-info"  (click)="gotoEdit(category)" >แก้ไข</button>
-            <button class="btn btn-danger" (click)="delete(category)" class="btn btn-danger">ลบ</button>
+            <button type="button" data-toggle="modal" data-target="#exampleModal" (click)="setModel(category)"  class="btn btn-danger">ลบ</button>
           </td>
           <!-- <td>
             <button *ngIf="user.permission==false" (click)="permission(user)"  class="btn btn-danger" >คลิกเพื่อเปิด</button>
@@ -100,8 +100,32 @@
           <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
         </div>
       </div>
-      <img  [src]="category.image" class="img-responsive">
-    <button class="btn btn-success float-right" (click)="update(category)" >บันทึกข้อมูล</button>
+      <img  [src]="category.image" class="img-responsive.alert alert-success">
+    <button class="btn btn-success float-right"  (click)="update(category)" >บันทึกข้อมูล</button>
+    <strong>Success!</strong> Indicates a successful or positive action.
   </div>  
 
 </section>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ยืนยันการลบข้อมูล</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        คุณต้องการการลบ {{category.name}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger" (click)="delete(category)" data-dismiss="modal" >ลบข้อมูล</button>
+      </div>
+    </div>
+  </div>
+</div>

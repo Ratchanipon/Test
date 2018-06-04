@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Category } from '../../model/category';
 import { Ng2ImgMaxService } from 'ng2-img-max';
 import { DomSanitizer } from '@angular/platform-browser';
 import { storage } from 'firebase';
 import { CategoryService } from '../../service/category.service';
+import { ToastsManager } from 'ng2-toastr';
+// import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-category-menagement',
@@ -15,14 +17,17 @@ export class CategoryMenagementComponent implements OnInit {
   constructor(
     private ng2ImgMax: Ng2ImgMaxService,
     public sanitizer: DomSanitizer,
-    private categoryService:CategoryService
+    private categoryService:CategoryService,
+    // public formBuilder: FormBuilder,
+    public toastr: ToastsManager, 
+    vcr: ViewContainerRef,
   ) {
-
+    this.toastr.setRootViewContainerRef(vcr);
     this.getCategoryList();
 
    }
   section:string="index";
-
+  
   category:Category={name:'',image:""}
   categoryList:Category[];
 
@@ -32,11 +37,14 @@ export class CategoryMenagementComponent implements OnInit {
   ngOnInit() {
   }
 
+  
+
   sreach(category:Category){
     this.categoryService.search(category.name).subscribe(list=>{
       console.log(list.length);  
       if(list.length>0){
-        this.category.name = '';
+        this.category = {name:"",image:""}; 
+        this.toastr.error('ข้อมูลซ้ำกรุณาเลือกใหม่', 'Oops!',{toastLife: 5000,showCloseButton: true});
       }    
     })
   }
@@ -55,17 +63,28 @@ export class CategoryMenagementComponent implements OnInit {
     this.category=category;
   }
   update(category:Category){
-    this.categoryService.update(category).then(res=>{
-      this.section = "index"
-    })
+    if(category.name!=''&&category.image!=''){
+      this.categoryService.update(category).then(res=>{
+        this.section = "index";
+        this.category = {name:'',image:""}; 
+        this.toastr.success('บันทึกข้อมูลสำเร็จ', 'Success!',{toastLife: 3000, showCloseButton: true});
+      });
+    }else{
+      this.toastr.error('กรุณาใส่ข้อมูลให้ครบ', 'Oops!',{toastLife: 5000,showCloseButton: true});
+    }
 
   }
 
   delete(category:Category){
     this.categoryService.delete(category).then(res=>{
       this.section = "index"
+      this.category = {name:'',image:""}; 
     })
 
+  }
+
+  setModel(category:Category){
+    this.category = category;
   }
   
   gotoIndex(){
@@ -73,9 +92,17 @@ export class CategoryMenagementComponent implements OnInit {
   }
 
   save(category:Category){
-    this.categoryService.save(category).then(res=>{
-      this.section = "index";
-    });
+    console.log(category);
+    if(category.name!=''&&category.image!=''){
+      this.categoryService.save(category).then(res=>{
+        this.section = "index";
+        this.category = {name:'',image:""}; 
+        this.toastr.success('บันทึกข้อมูลสำเร็จ', 'Success!',{toastLife: 3000, showCloseButton: true});
+      });
+    }else{
+      this.toastr.error('กรุณาใส่ข้อมูลให้ครบ', 'Oops!',{toastLife: 5000,showCloseButton: true});
+    }
+    
     
   }
 
