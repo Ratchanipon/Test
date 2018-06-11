@@ -9,7 +9,7 @@
         <th style="width: 5%;" >ลำดับ</th>
         <th style="width: 10%;" >ชื่อบทความ</th>
         <th style="width: 15%;" >รายละเอียด</th>
-        <th style="width: 20%;" >รูปภาพ</th>
+        <!-- <th style="width: 20%;" >รูปภาพ</th> -->
         <th style="width: 20%;" >สถานะ</th>
         <th style="width: 10%;" >จัดการ</th>
        
@@ -20,13 +20,13 @@
         <td>{{i+1}}</td>
         <td>{{article.name}}</td>
         <td>{{article.detail | slice:0:60}}</td>
-        <td>
+        <!-- <td>
           <img src="http://qnimate.com/wp-content/uploads/2014/03/images2.jpg" width="100" height="100">
-        </td>
+        </td> -->
         <td>
-            <button *ngIf="article.status =='wait'"  class="btn btn-primary">รออนุมัติ</button>
-            <button *ngIf="article.status =='approve'" class="btn btn-success">อนุมัติ</button>
-            <button *ngIf="article.status =='reject'" class="btn btn-danger">ไม่อนุมัติ</button>
+            <h4 *ngIf="article.status =='wait'"  style="color: rgb(236, 215, 18)">รออนุมัติ</h4>
+            <h4 *ngIf="article.status =='approve'" style="color: rgb(80, 216, 18)" >อนุมัติ</h4>
+            <h4 *ngIf="article.status =='reject'" style="color: rgb(228, 18, 18)">ไม่อนุมัติ</h4>
         </td>
         <td>
           <button  class="btn btn-success" (click)="gotodetail(article)" >ดูรายละเอียด</button>
